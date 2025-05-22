@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo-Beirut-Arab-University.jpg" alt="Beirut Arab University Logo" width="150" />
+</p>
+
 # BAU CS Roadmap 📚
 
 Welcome to the **Beirut Arab University Computer Science Roadmap**! This repository contains all my personal course notes, summaries, assignments, and study resources from my time at BAU.
@@ -14,10 +18,9 @@ Welcome to the **Beirut Arab University Computer Science Roadmap**! This reposit
 
 ## 🗂️ Structure
 
-📁 01-freshman-year/
-📁 02-sophomore-year/
-📁 03-junior-year/
-📁 04-senior-year/
+📁 01-First-Year/
+📁 02-Second-Year/
+📁 03-Third-Year/
 📁 bonus-materials/
 📁 templates/
 
