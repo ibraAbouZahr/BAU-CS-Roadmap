@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo-Beirut-Arab-University.jpg" alt="Beirut Arab University Logo" width="150" />
+  <img src="assets/logo-Beirut-Arab-University.jpg" alt="Beirut Arab University Logo" width="300" height="auto" />
 </p>
 
 # BAU CS Roadmap 📚
@@ -39,4 +39,4 @@ If you’re a BAU CS student and want to add your own notes, feel free to open a
 
 **Good luck on your CS journey! 💻**
 
-_Made with ❤️ by Ibrahim Abou Zahr @ Beirut Arab University_
+_Made with ❤️ by [Ibrahim Abou Zahr](https://www.linkedin.com/in/ibrahim-abouzahr-dev/) @ Beirut Arab University_
