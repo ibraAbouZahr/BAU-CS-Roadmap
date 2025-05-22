@@ -1,0 +1,265 @@
+<!DOCTYPE "html"/>
+<html>
+
+<head>
+<table>
+<tr>
+<th> <img src = "webu_logo.png" height="400" width="400"> </th> 
+
+
+<th><FONT COLOR = "blue">  The Web University </th>
+
+
+</tr>
+
+</table>
+<audio controls>
+<source src = "welcome.mp3" type ="audio/mp3">
+</audio>
+</head>
+
+<body>
+
+<h1> Table of contents: </h1>
+<ol> 
+<li> <a href "#cover" > What does the scholarship cover? </a> </li>
+<li> <a href "#terms" > What are the scholarship terms?</a> </li>
+<li> <a href "" > Positions for Financial aid.</a> </li>
+<li> <a href "" > Scholarship aplication form. </a> </li>
+<h1 id = "cover" >What does the scholarship cover? </h1>
+</ol>
+<table border "collapse">
+<tr> 
+<th> CGPA-Bachelor Level </th>
+<th> Tution Fees Reduction </th>
+</tr>
+<tr>
+<td align = "center"> 2.33 </td>
+<td align = "center"> 10% </td>
+</tr>
+<tr>
+<td align = "center">  2.67 </td>
+<td align = "center"> 15% </td>
+</table>
+<hr>
+<h1 id = "terms" > What are the scholarship terms? </h1>
+<table border "collapse">
+<tr> 
+<th> BAU's English Language Proficency Exam </th>
+<th> TOEFL(paper & pencil)iBT </th>
+<th> TOEFL(Internet based)iTP </th>
+<th> IELTS </th>
+</tr>
+<tr>
+<td align = "center"> 60 </td>
+<td align = "center"> 520 </td>
+<td align = "center"> 68 </td>
+<td align = "center"> 5.5 </td> 
+ </table>
+<hr> 
+<h1> Positions for Financial aid </h1>
+<table border "collapse">
+<tr>
+<th align = "center"> positions </th>
+<th align = "center"> hour rate </th>
+<th align = "center"> days per week </th>
+<th align = "center"> scholarships </th>
+<th align = "center"> tasks </th>
+
+<tr>
+    
+    <td align = "center"> Teacher assistant </td>
+    <td align = "center"> 40$ </td>
+    <td align = "center"> 3 to 4 </td>
+    <td align = "center"> up to 35% </td> 
+    <td>
+        <ul>
+            <li> prepare lab sheet</li>
+            <li> explain labs in class</li>
+            <li> give feedback to the drs</li>
+            <li> correct each lab and send grades to the dr</li>
+            
+        </ul>
+    </td>
+    
+</tr>
+<tr>
+    <td align="center" > Administrive officer</td>
+    <td align="center" > 20$</td>
+    <td align="center" > 5 </td>
+    <td align="center" > 50% to 70% </td>
+    <td><ul>
+        <li>make room reservations</li>
+        <li>check for labs reliability</li>
+        <li>help students maintain their schedules</li>
+        <li>assist students with their registration proccess</li>
+
+    </ul>
+
+</td>
+
+</tr>
+
+    <tr>
+        <td align="center" >Library assistant</td>
+        <td align="center" >30$</td>
+        <td align="center" > 5  </td>
+        <td align="center" >30 to 50%</td>
+        <td><ul>
+            <li>maintain silence in library</li>
+            <li>check books quotations</li>
+            <li>responsible of returning books back on time</li>
+            <li>help in finding books</li>
+        </td>
+    
+        </ul>
+
+
+        
+    </tr>
+    <tr>
+        <td align="center" >PT Trainer</td>
+        <td align="center" >35$</td>
+        <td align="center"> 5 </td>
+        <td align="center" >40%</td>
+        <td><ul>
+            <li>assist students that go to the gym</li>
+            <li>check machines reliability</li>
+            <li>take IDs when students enter the gym</li>
+            <li>give back the IDs when they leave</li>
+        </td>
+    
+        </ul>
+
+    </tr>
+</table>
+    <h1>Scholarship application form</h1>
+    <h2>Personal information</h2>
+    <p>Name</p>
+    <table border="2">
+        <tr>
+            <label for = "fname"> </label>
+            <td>First Name</td>
+            <td > <input type="text"> </td>
+        </tr>
+        <tr>
+            <label for = "lname"> </label>
+            <td>Last Name</td>
+            <td> <input type="text">  </td>
+        </tr>
+    </table>
+    <h3>Date of Birth</h3>
+    <table border="1">
+        <tr>
+            <td>MM</td>
+            <td><input type="text"></td>
+
+        </tr>
+        <tr>
+            <td>DD</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>YYY</td>
+            <td><input type="text"></td>
+        </tr>
+    </table>
+    <h3>Gender</h3>
+    <select name="gender" id="gender">
+    <option value="">Male</option>
+    <option value="">Female</option></select>
+
+    <h3>Email</h3>
+    <table border="1">
+        <tr>
+            <td><input type="text"></td>
+        </tr>
+    </table>
+
+    <h3>Mobile phone number</h3>
+    <table border="1">
+        <tr>
+            <td><input type="text"></td>
+        </tr>
+    </table>
+    <h3>Permanent Address</h3>
+    <table border="1">
+        <tr>
+            <td>Street Address</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>
+                City
+            </td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td><input type="text"></td>
+        </tr>
+    </table>
+    <h3>Citizenship Status</h3>
+    <table>
+        <tr>
+            <td>
+                <input type="radio" name="Citizenship Status" id="citizen"> Lebanon Citizen
+            </td>
+            <td><input type="radio">Permanent Resident</td>
+            <td><input type="radio" >Resident Alien</td>
+        </tr>
+    </table>
+    <h3>2.Accomplishments</h3>
+    <h3>English tests taken</h3>
+    <table>
+        <tr>
+            <td><input type="checkbox">WebU's English Language profeciency Exam</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"> TOEFL(paper&pencil) iBT</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">TOEFL(internet based)ITP</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox">IELTS</td>
+        </tr>
+
+    </table>
+    <h3>Provide a list of all school and college related activities (sports,arts,music,volunteering) with dates involvment</h3>
+    <textarea name="activities" id="" cols="100" rows="10"></textarea>
+   <br> <input type="submit" name="submit button" id=""> </br>
+   <br><iframe width="400" height="300" src="https://www.youtube.com/watch?v=-s3InudNIrM" frameborder="0"></iframe></br>
+
+
+
+
+
+</body>
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

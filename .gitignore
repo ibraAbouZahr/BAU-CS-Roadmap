@@ -1,0 +1,23 @@
+# Eclipse-specific folders and files
+.metadata/
+*.launch
+.settings/
+bin/
+tmp/
+*.log
+
+# Common Java/Eclipse generated files
+*.class
+*.project
+*.classpath
+
+# Maven
+target/
+
+# Gradle
+.gradle/
+build/
+
+# OS-specific
+.DS_Store
+Thumbs.db
