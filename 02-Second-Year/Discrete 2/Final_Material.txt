@@ -1,0 +1,10 @@
+Material Included:
+
+- Graphs (DONE!)
+- Trees (DONE!)
+- Number Theory (DONE!)
+- Cryptography (DONE!)
+Please note the following:
+
+A formula sheet will be provided to you during the exam
+Make sure to solve the examples in the slides, the assignment questions, and the sample final exam questions shared with you on Moodle. Doing so will guarantee that you ace the exam.

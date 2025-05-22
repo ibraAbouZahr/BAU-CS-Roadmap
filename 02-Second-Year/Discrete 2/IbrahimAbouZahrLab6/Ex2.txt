@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std; 
+void generateBitSequences(int n, int current, int l{
+ if (l == n) {
+ cout << current << endl;
+ } else {
+
+ if l< 1 || (current % 2) != 0) {
+ generateBitSequences(n, (current << 1), l++);
+ }
+ 
+ 
+ generateBitSequences(n, (current << 1) | 1, l++);
+ }
+}
+
+int main() {
+ int n;
+ cout << "Enter the length of bit sequences (n): ";
+ cin >> n;
+ int initial = 0; 
+ generateBitSequences(n, ‌initial, 0);
+ return 0;
+}

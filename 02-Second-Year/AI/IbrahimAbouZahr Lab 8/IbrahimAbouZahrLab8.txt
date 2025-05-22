@@ -1,0 +1,108 @@
+import random
+
+# Function to generate a random population of chromosomes
+def generate_population(size, item_count):
+    population = [[random.randint(0, 1) for _ in range(item_count)] for _ in range(size)]
+    print("Generated a random population of size", size)
+    return population
+    
+# We get random population to work on
+
+# Function to calculate the fitness of a chromosome
+def calculate_fitness(chromosome, items, max_weight):
+    total_weight = sum(items[i][0] * chromosome[i] for i in range(len(chromosome)))
+    total_value = sum(items[i][1] * chromosome[i] for i in range(len(chromosome)))
+    if total_weight > max_weight:
+        return 0
+    else:
+        return total_value
+        
+# This calculates the fitness of the chromosome values (heauristic function)
+
+# Function to select two chromosomes for crossover
+def select_chromosomes(population, items, max_weight):
+    fitness_values = [calculate_fitness(chromosome, items, max_weight) for chromosome in population]
+    total_fitness = sum(fitness_values)
+    normalized_fitness = [fitness / total_fitness for fitness in fitness_values]
+    parent1 = random.choices(population, weights=normalized_fitness, k=1)[0]
+    parent2 = random.choices(population, weights=normalized_fitness, k=1)[0]
+    return parent1, parent2
+    
+    # This selects 2 random chromosomes from the population to do gene crossover
+
+# Function to perform crossover between two chromosomes
+def crossover(parent1, parent2):
+    crossover_point = random.randint(1, len(parent1) - 1)
+    child1 = parent1[:crossover_point] + parent2[crossover_point:]
+    child2 = parent2[:crossover_point] + parent1[crossover_point:]
+    return child1, child2
+    
+    # Does the cross over for 2 chromosomes
+
+# Function to perform mutation on a chromosome
+def mutate(chromosome, mutation_probability):
+    mutated_chromosome = [1 - gene if random.random() < mutation_probability else gene for gene in chromosome]
+    return mutated_chromosome
+    
+    # pPerforms mutation on a specidfied probabilty value
+
+# Function to get the best chromosome from the population
+def get_best(population, items, max_weight):
+    fitness_values = [calculate_fitness(chromosome, items, max_weight) for chromosome in population]
+    best_index = fitness_values.index(max(fitness_values))
+    best_solution = population[best_index]
+    best_weight = sum(items[i][0] * best_solution[i] for i in range(len(best_solution)))
+    best_value = sum(items[i][1] * best_solution[i] for i in range(len(best_solution)))
+    print(f"The best solution: {best_solution}")
+    print(f"Weight: {best_weight}")
+    print(f"Value: {best_value}")
+    return best_solution, best_weight, best_value
+    
+    # Compares fitness values between chromosomes and returns best solution
+
+# Function to evolve population for specified number of generations
+def evolve(population, items, max_weight, generations, mutation_probability):
+    for gen in range(1, generations + 1):
+        parent1, parent2 = select_chromosomes(population, items, max_weight)
+        child1, child2 = crossover(parent1, parent2)
+        child1 = mutate(child1, mutation_probability)
+        child2 = mutate(child2, mutation_probability)
+        population = [child1, child2] + population[2:]
+        print(f"Generations {gen}: {population}")
+    return population
+    
+    # This function calls the mutate, select chromosome and select methods to evolve population
+
+# Sample parameters
+items = [[1, 2], [2, 4], [3, 4], [4, 5], [5, 7], [6, 9]]
+max_weight = 10
+population_size = 10
+mutation_probability = 0.2
+generations = 10
+
+# Output 
+The best solution: [1, 1, 1, 1, 0, 0]
+Weight: 10
+Value: 15
+
+# Perform genetic evolution
+initial_population = generate_population(population_size, len(items))
+final_population = evolve(initial_population, items, max_weight, generations, mutation_probability)
+best_solution = get_best(final_population, items, max_weight)
+
+# New Parameters
+items = [[1, 3], [2, 5], [3, 6], [4, 7], [5, 8], [6, 10]]
+max_weight = 10
+population_size = 10
+mutation_probability = 0.5
+generations = 10
+
+# Output with New Parameters
+The best solution: [0, 0, 0, 1, 0, 1]
+Weight: 10
+Value: 17
+
+# After changing the initial parameters, we can see that the best solution has changed which means that this solution has the 
+best fitness function. Moreover, weight stayed the same since items 4 and 6 were selected.
+# The value output became 17 because the 4th item has value 7 and the 6th item has value 10 -> 7 + 10 = 17 which is the total value
+

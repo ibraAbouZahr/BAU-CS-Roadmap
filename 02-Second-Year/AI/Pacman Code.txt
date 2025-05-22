@@ -1,0 +1,382 @@
+#include<iostream>
+#include<stdlib.h>
+#include<time.h>
+#include<stack>
+using namespace std;
+
+const int ROWS = 18;
+const int COLS = 32;
+
+char maze[ROWS][COLS] = {
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "X    X                 X      X",
+    "X    X                 X      X",
+    "XXX XX                 XX XXXXX",
+    "X                             X",
+    "X                             X",
+    "X                             X",
+    "X                             X",
+    "X             XXXX            X",
+    "X                             X",
+    "X                             X",
+    "X                             X",
+    "X                             X",
+    "X                             X",
+    "XXXXXX XXX            XXX XXXXX",
+    "X        X            X       X",
+    "X        X            X       X",
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+};
+const int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+// Function to check if a cell is valid (within bounds and not a wall)
+bool isValid(int row, int col) {
+    return row >= 0 && row < ROWS && col >= 0 && col < COLS && maze[row][col] != 'X';
+}
+
+// Depth-First Search (DFS) function to explore the maze and find a path for Pacman
+bool DFS(int startRow, int startCol, int goalRow, int goalCol) {
+    // Create a stack for DFS traversal
+    stack<pair<int, int>> stk;
+    stk.push(make_pair(startRow, startCol));
+
+    // Mark all cells as not visited
+    bool visited[ROWS][COLS] = {false};
+
+    while (!stk.empty()) {
+        // Get the current cell
+        int row = stk.top().first;
+        int col = stk.top().second;
+        stk.pop();
+
+        // Mark the current cell as visited
+        visited[row][col] = true;
+
+        // Check if we reached the goal
+        if (row == goalRow && col == goalCol) {
+            return true; // Goal reached
+        }
+
+        // Explore adjacent cells
+        for (int i = 0; i < 4; ++i) {
+            int newRow = row + dirs[i][0];
+            int newCol = col + dirs[i][1];
+
+            // Check if the new cell is valid and not visited
+            if (isValid(newRow, newCol) && !visited[newRow][newCol]) {
+                stk.push(make_pair(newRow, newCol)); // Add the new cell to the stack
+            }
+        }
+    }
+
+    return false; // Goal not reachable
+}
+
+
+void print(char array[18][32], int ghostVertINDX, int ghostHorINDX) {
+    for (int i = 0; i < 18; i++) {
+        for (int j = 0; j < 32; j++) {
+            if (i == ghostVertINDX && j == ghostHorINDX) {
+                cout << '@'; // Display ghost
+            } else {
+                cout << array[i][j];
+            }
+        }
+        cout << endl;
+    }
+}
+
+void monstermove(char array[18][32], int& vindX, int& hindX, int& ghostVertINDX, int& ghostHorINDX) {
+    srand(time(NULL));
+    int choice = 0;
+    choice = rand() % 4 + 1;
+
+    // Move the ghost based on the random choice
+    if (choice == 1) {
+        // Move up
+        if (array[ghostVertINDX - 1][ghostHorINDX] != 'X') {
+            ghostVertINDX--;
+        }
+    } else if (choice == 2) {
+        // Move down
+        if (array[ghostVertINDX + 1][ghostHorINDX] != 'X') {
+            ghostVertINDX++;
+        }
+    } else if (choice == 3) {
+        // Move left
+        if (array[ghostVertINDX][ghostHorINDX - 1] != 'X') {
+            ghostHorINDX--;
+        }
+    } else {
+        // Move right
+        if (array[ghostVertINDX][ghostHorINDX + 1] != 'X') {
+            ghostHorINDX++;
+        }
+    }
+}
+void print(char array[18][32]) {
+	for (int i = 0; i < 18;i++) {
+		for (int j = 0; j < 32;j++) {
+			cout << array[i][j];
+		}
+		cout << endl;
+	
+	}
+}
+void moveright(char array[18][32],int &hindX,int &vindX,int &score) {
+	if (array[vindX][hindX+1]=='*' || array[vindX][hindX+1]==' ') {
+		if (array[vindX][hindX+1]=='*') {
+			array[vindX][hindX] = ' ';
+			hindX++;
+			array[vindX][hindX] = 'P';
+			score++;
+		}
+		else {
+			array[vindX][hindX] = ' ';
+			hindX++;
+			array[vindX][hindX] = 'P';
+		}
+	}
+}
+void moveleft(char array[18][32], int& hindX, int& vindX, int &score) {
+	if (array[vindX][hindX - 1] == '*' || array[vindX][hindX - 1] == ' ') {
+		if (array[vindX][hindX-1]=='*') {
+			array[vindX][hindX] = ' ';
+			hindX--;
+			array[vindX][hindX] = 'P';
+			score++;
+		}
+		else {
+			array[vindX][hindX] = ' ';
+			hindX--;
+			array[vindX][hindX] = 'P';
+		}
+	}
+}
+
+void moveup(char array[18][32],int &vindX,int &hindX,int &score) {
+	if (array[vindX-1][hindX]=='*' || array[vindX-1][hindX] == ' ') {
+		if (array[vindX-1][hindX]=='*') {
+			array[vindX][hindX] = ' ';
+			vindX--;
+			array[vindX][hindX] = 'P';
+			score++;
+		}
+		else {
+			array[vindX][hindX] = ' ';
+			vindX--;
+			array[vindX][hindX] = 'P';
+
+		}
+	}
+}
+void movedown(char array[18][32],int &vindX,int &hindX,int &score) {
+	if (array[vindX+1][hindX]=='*' || array[vindX + 1][hindX] == ' ') {
+		if (array[vindX+1][hindX]=='*') {
+			array[vindX][hindX] = ' ';
+			vindX++;
+			array[vindX][hindX] = 'P';
+			score++;
+		}
+		else {
+			array[vindX][hindX] = ' ';
+			vindX++;
+			array[vindX][hindX] = 'P';
+		}
+	}
+}
+void menu() {
+	cout << "Next move?" << endl;
+	cout << "1. Move up" << endl;
+	cout << "2. Move down" << endl;
+	cout << "3.Move left" << endl;
+	cout << "4. Move right" << endl;
+	cout << "5. Quit" << endl;
+	}
+void initialiseMonster(char array[18][32],int &ranV,int &ranH) {
+	 ranV=9, ranH=14;
+	
+	 array[ranV][ranH] = '@';
+	
+}
+void monstermove(char array[18][32], int& vindX, int& hindX) {
+	srand(time(NULL));
+	int choice = 0;
+	choice = rand() % 4 + 1;
+	int n = 0;
+
+	if (choice == 1) {
+		if (array[vindX + 1][hindX] != 'X') {
+			if (array[vindX + 1][hindX] == '*') {
+				array[vindX + 1][hindX] = '@';
+				array[vindX][hindX] = '*';
+				vindX++;
+			}
+			else {
+				array[vindX + 1][hindX] = '@';
+				array[vindX][hindX] = ' ';
+				vindX++;
+			}
+		}
+	}
+	else if (choice == 2) {
+		if (array[vindX - 1][hindX] != 'X') {
+			if (array[vindX - 1][hindX] == '*') {
+				array[vindX - 1][hindX] = '@';
+				array[vindX][hindX] = '*';
+				vindX--;
+			}
+			else {
+				array[vindX - 1][hindX] = '@';
+				array[vindX][hindX] = ' ';
+				vindX--;
+			}
+		}
+	}
+	else if (choice == 3) {
+		if (array[vindX][hindX + 1] != 'X') {
+			if (array[vindX][hindX + 1] == '*') {
+				array[vindX][hindX + 1] = '@';
+				array[vindX][hindX] = '*';
+				hindX++;
+			}
+			else {
+				array[vindX][hindX + 1] = '@';
+				array[vindX][hindX] = ' ';
+				hindX++;
+			}
+		}
+	}
+	else {
+		if (array[vindX][hindX - 1] != 'X') {
+			if (array[vindX][hindX - 1] == '*') {
+				array[vindX][hindX - 1] = '@';
+				array[vindX][hindX] = '*';
+				hindX--;
+			}
+			else {
+				array[vindX][hindX - 1] = '@';
+				array[vindX][hindX] = ' ';
+				hindX--;
+			}
+		}
+	}
+}
+
+
+
+
+int main() {
+    int lives = 3;
+	int choice=0;
+	int choice2=0;
+	int vertINDX = 0;
+	int horINDX = 0;
+	int score = 0;
+	int mVindX, mhindX = 0;
+	int ghostVertINDX = 9;
+    int ghostHorINDX = 14;
+	char arr[18][32] = {
+	"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+	"X    X                 X      X",
+	"X    X                 X      X",
+	"XXX XX                 XX XXXXX",
+	"X                             X",
+	"X                             X",
+	"X                             X",
+	"X                             X",
+	"X             XXXX            X",
+	"X                             X",
+	"X                             X",
+	"X                             X",
+	"X                             X",
+	"X                             X",
+	"XXXXXX XXX            XXX XXXXX",
+	"X        X            X       X",
+	"X        X            X       X",
+	"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	};	
+	for (int i = 0; i < 18;i++) {
+		for (int j = 0; j < 31;j++) {
+			if (arr[i][j]!='X') {
+				arr[i][j] = '*';
+			}
+		}
+	}
+	initialiseMonster(arr,mVindX,mhindX);
+	arr[16][14]='P';
+	vertINDX = 16;
+	horINDX = 14;
+	print(arr);
+	cout << "Menu:" << endl;
+	cout << "1. Play game" << endl;
+	cout << "2. View Board" << endl;
+	cin >> choice;
+	if (choice == 1) {
+		while (choice2 != 5) {
+			menu();
+			cin >> choice2;
+			if (choice2 == 1) {
+			    moveup(arr, vertINDX, horINDX, score);
+			     if (ghostVertINDX == vertINDX && ghostHorINDX == horINDX) {
+                lives--; // Deduct a life if Pacman collides with ghost
+                 cout << "Pacman lost a life!" << endl;
+            }
+                monstermove(arr, vertINDX, horINDX, ghostVertINDX, ghostHorINDX);
+                print(arr, ghostVertINDX, ghostHorINDX);
+				if (arr[vertINDX][horINDX] == '@') {
+					choice2 = 5;
+					cout << "Game over" << endl;
+					cout << score << endl;
+				}
+			}
+			else if (choice2 == 2) {
+				movedown(arr, vertINDX, horINDX, score);
+				 if (ghostVertINDX == vertINDX && ghostHorINDX == horINDX) {
+                lives--; // Deduct a life if Pacman collides with ghost
+            }
+                monstermove(arr, vertINDX, horINDX, ghostVertINDX, ghostHorINDX);
+                print(arr, ghostVertINDX, ghostHorINDX);
+				if (arr[vertINDX][horINDX]=='@') {
+					choice2 = 5;
+					cout << "Game over" << endl;
+					cout << score << endl;
+				}
+			}
+			else if (choice2 == 3) {
+			    moveleft(arr, horINDX, vertINDX, score);
+			     if (ghostVertINDX == vertINDX && ghostHorINDX == horINDX) {
+                lives--; // Deduct a life if Pacman collides with ghost
+                 cout << "Pacman lost a life!" << endl;
+            }
+                monstermove(arr, vertINDX, horINDX, ghostVertINDX, ghostHorINDX);
+                print(arr, ghostVertINDX, ghostHorINDX);
+				if (arr[vertINDX][horINDX] == '@') {
+					choice2 = 5;
+					cout << "Game over" << endl;
+					cout << score << endl;
+				}
+			}
+			else if (choice2 == 4) {
+				moveright(arr, horINDX, vertINDX, score);
+				 if (ghostVertINDX == vertINDX && ghostHorINDX == horINDX) {
+                lives--; // Deduct a life if Pacman collides with ghost
+                 cout << "Pacman lost a life!" << endl;
+            }
+                monstermove(arr, vertINDX, horINDX, ghostVertINDX, ghostHorINDX);
+                print(arr, ghostVertINDX, ghostHorINDX);
+				if (arr[vertINDX][horINDX] == '@') {
+					choice2 = 5;
+					cout << "Game over" << endl;
+					cout << score << endl;
+				}
+			}
+			else {
+				cout << "Your score is:" << score << endl;
+			}
+		}
+	}
+		else {
+			print(arr);
+		}
+	}

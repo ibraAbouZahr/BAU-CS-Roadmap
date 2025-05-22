@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+void generateParentheses(int n, int Ocount, int Ccount, string 
+current) {
+ if (current.size() == 2 * (n + 1)) {
+ cout << current << endl;
+ return;
+ }
+ if (Ocount < n + 1) {
+ generateParentheses(n, Ocount+ 1, Ccount, current);
+ }
+ if Ccount< Ocount{
+ generateParentheses(n, openCount, closeCount + 1, current);
+ }
+}
+
+int main() {
+ int n;
+ cout << "Enter a number greater than 1 ";
+ cin >> n;
+ if (n <= 1) {
+ cout << "n is not greater than 1!" << endl;
+ return 1;
+ }
+ cout << "Product od all expressions:  " << n 
++ 1 << " variables:" << endl;
